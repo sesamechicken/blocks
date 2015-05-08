@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>experiment-blocks</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="author" content="Chris Dickow">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <style type="text/css">
+  html, body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .box{
+    width: 10%;
+    height: 10%;
+    background-color: #000;
+    /* #FF006C; */
+    float: left;
+    -webkit-transition: all cubic-bezier(0.190, 1.000, 0.220, 1.000) 2000ms;
+    -moz-transition: all cubic-bezier(0.190, 1.000, 0.220, 1.000) 2000ms;
+     -o-transition: all cubic-bezier(0.190, 1.000, 0.220, 1.000) 2000ms;
+        transition: all cubic-bezier(0.190, 1.000, 0.220, 1.000) 2000ms;
+  }
+  .description{
+    float: left;
+    clear: both;
+    padding: .5em;
+  }
+  </style>
+</head>
+<body>
+<div class="description">Just screwing around with vanilla javascript and boxes.</div>
+<script type="text/javascript">
+window.addEventListener('resize', drawPlayGround, true);
+(function(){
+  drawPlayGround();
+}());
+var prettyInterval;
+function drawPlayGround(){
+  clearInterval(prettyInterval);
+  var winHeight = window.innerHeight;
+  var winWidth = window.innerWidth;
+  var yCount = Math.round(winHeight / (winHeight * .1));
+  var xCount = Math.round(winWidth / (winWidth * .1));
+  ttlCount = yCount * xCount;
+  var count = ttlCount;
+  prettyInterval = setInterval(animateBoxes, 10);
+  for(i = 0; i < ttlCount; i++){
+    var div = document.createElement('div');
+    div.className = 'box';
+    document.body.appendChild(div);
+  }
+  function animateBoxes(){
+    var rand = Math.round(Math.random() * (ttlCount - 1) + 1);
+    var box = document.getElementsByTagName('div');
+    box[rand].style.opacity = Math.random();
+  }
+}
+</script>
+</body>
+</html>
