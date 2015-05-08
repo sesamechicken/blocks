@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="me">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>experiment-blocks-2</title>
+<meta name="description" content="Personal collection of works by Chris Dickow">
+<meta name="robots" content="noindex, nofollow">
+<style type="text/css">
+  *, html{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+  }
+  body{
+    height: 100%;
+    font-size: 16px;
+    position: absolute;
+  }
+  .wrapper{
+    padding: 0;
+    height: 100%;
+    background-color: #f8198a;
+    position: fixed;
+  }
+  .tile{
+    display:inline;
+    color: #999;
+    height: 40px;
+    width: 40px;
+    transition: all 800ms ease;
+    float: left;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+<div id="wrapper" class="wrapper"></div>
+<script type="text/javascript">
+(function(){
+  init();
+}());
+var colorArray = ["#fa5bac", "#640334"];
+function init(){
+  // Create boxes
+  for(i = 0; i<550; i++){
+    var sp = document.createElement('div');
+    sp.className = "tile";
+    document.getElementById("wrapper").appendChild(sp);
+  }
+  var waveInt = setInterval(
+  function(){
+    var els = document.getElementsByClassName('tile');
+    for(k = 0; k < els.length; k++){
+      var firstRand = Math.floor(Math.random() * els.length) + 0;
+      var secondRand = Math.floor(Math.random() * els.length) + 0;
+
+      els[firstRand].style.opacity = Math.random();
+      els[firstRand].style.backgroundColor = colorArray[(Math.floor(Math.random() * colorArray.length) + 0)];
+
+      els[secondRand].style.opacity = Math.random();
+      els[secondRand].style.backgroundColor = colorArray[(Math.floor(Math.random() * colorArray.length) + 0)];
+    }}
+    , 1000);
+}
+</script>
+</body>
+</html>
